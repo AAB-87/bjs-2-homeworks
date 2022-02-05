@@ -1,26 +1,28 @@
-"use stict"
+"use strict" // активация строгого режима
 
 function solveEquation(a, b, c) {
   let arr;
   arr = [];
+  let d;
+  let x;
+  let x1;
+  let x2;
 
-  D = b ** 2 - 4 * a * c // результатом функции д.б. массив
+  d = b ** 2 - 4 * a * c
 
   // Формула для вычисления корня [1]
   x = -b / (2 * a),
   arr.push('x')
 
   // Формула для вычисления 2х корней [2]
-  x1 = (-b + Math.sqrt(D)) / (2 * a)
+  x1 = (-b + Math.sqrt(d)) / (2 * a)
   arr.push('x1')
-  x2 = (-b - Math.sqrt(D)) / (2 * a)
+  x2 = (-b - Math.sqrt(d)) / (2 * a)
   arr.push('x2')
 
-  if (D < 0) {
-    arr = [];
-  } else if (D == 0) {
+  if (d == 0) {
     arr = [x];
-  } else if (D > 0) {
+  } else if (d > 0) {
     arr = [x1, x2];
   }
     return arr; // array
