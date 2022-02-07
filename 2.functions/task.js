@@ -4,7 +4,7 @@ function getArrayParams(arr) {
   let max = -Infinity;
   let sum = 0;
 
-  for (let i = 0; arr.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     if (i > max) {
       max = i;
     } else if (i < min) {
@@ -24,8 +24,9 @@ function getArrayParams(arr) {
 function worker(arr) {
   let sum;
 
-  // Ваш код
-
+  for (let i = 0; i < arr.length; i++) {
+    sum = i + sum;
+  }
   return sum;
 }
 
@@ -37,6 +38,9 @@ function makeWork(arrOfArr, func) {
   
   return max;
 }
+
+
+
 
 // Задание 3
 function worker2(arr) {
