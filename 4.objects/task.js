@@ -4,6 +4,8 @@ function Student(name, gender, age) {
   this.age = age;
 }
 
+// при помощи prototype мы создаём функцию, которая будет у каждого объекта (экземпляра) класса Student
+
 Student.prototype.setSubject = function (subjectName) { // создаём доступный для всех студентов метод, который при вызове будет устанавливать новый предмет для изучения студенту 
   this.subject = subjectName; // присваиваем значение полю sabject
 }
