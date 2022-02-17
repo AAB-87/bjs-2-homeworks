@@ -1,5 +1,5 @@
-class PrintEditionItem {
-	constructor(name, releaseDate, pagesCount) {
+class PrintEditionItem { // Создание печатного изжания
+	constructor(name, releaseDate, pagesCount) { // конструктор принимает параметры...)
 		this.name = name;
 		this.releaseDate = releaseDate;
 		this.pagesCount = pagesCount;
@@ -7,18 +7,17 @@ class PrintEditionItem {
 		this.type = null;
 	}
 
-
 	fix() {
 		this.state = this.state * 1.5;
 	}
 
-	set state(number) {
-		if (number < 0) {
-			state = 0;
-		} else if (number > 100) {
-			state = 100;
+	set state(newState) {
+		if (newState < 0) {
+			this._state = 0;
+		} else if (newState > 100) {
+			this._state = 100;
 		}
-		return number;
+		this._state = newState;
 	}
 
 	get state() {
