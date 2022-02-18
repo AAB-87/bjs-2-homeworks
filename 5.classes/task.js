@@ -10,10 +10,10 @@ class PrintEditionItem { // Создание печатного изжания
 	}
 
 	fix() {
-		this.state = this.state * 1.5;
+		this.state = this.state * 1.5; // метод увеличивает состояние книги в 1,5 раза
 	}
 
-	set state(newState) {
+	set state(newState) { // метод опредиляющий состояние (изношенность) книги
 		if (newState < 0) {
 			this._state = 0;
 		} else if (newState > 100) {
@@ -28,37 +28,37 @@ class PrintEditionItem { // Создание печатного изжания
 	}
 }
 
-class Magazine extends PrintEditionItem {
+class Magazine extends PrintEditionItem { // класс для храниения журналов
 	constructor(name, releaseDate, pagesCount) {
 		super(name, releaseDate, pagesCount);
 		this.type = "magazine";
 	}
 }
 
-class Book extends PrintEditionItem {
-	constructor(name, releaseDate, pagesCount, author) {
+class Book extends PrintEditionItem { // класс для храниения книг
+	constructor(author, name, releaseDate, pagesCount) {
 		super(name, releaseDate, pagesCount);
-		this.type = "book";
 		this.author = "author";
+		this.type = "book";
 	}
 }
 
-class NovelBook extends Book {
-	constructor(name, releaseDate, pagesCount, author) {
+class NovelBook extends Book { // класс для хранения книг в жанре новелла
+	constructor(author, name, releaseDate, pagesCount) {
 		super(name, releaseDate, pagesCount, author);
 		this.type = "novel";
 	}
 }
 
-class FantasticBook extends Book {
-	constructor(name, releaseDate, pagesCount, author) {
+class FantasticBook extends Book { // класс для хранения книг в жанре фантастика
+	constructor(author, name, releaseDate, pagesCount) {
 		super(name, releaseDate, pagesCount, author);
 		this.type = "fantastic";
 	}
 }
 
-class DetectiveBook extends Book {
-	constructor(name, releaseDate, pagesCount, author) {
+class DetectiveBook extends Book { // класс для хранения книг в жанре детектив
+	constructor(author, name, releaseDate, pagesCount) {
 		super(name, releaseDate, pagesCount, author);
 		this.type = "detective";
 	}
@@ -66,7 +66,7 @@ class DetectiveBook extends Book {
 
 // Задание 2
 
-class Library { // Создание библиотеки
+class Library { // создание библиотеки
 	constructor(name) { // конструктор принимает параметры...)
 		this.name = name;
 		this.books = []; // пустой массив 
@@ -79,20 +79,20 @@ class Library { // Создание библиотеки
 	}
 
 	findBookBy(type, value) { // метод поиска книги в библиотеке в качестве аргумента принимает ключ (type) с помощью которого будет производиться поиск и искомое значение (value)
-		let result = this.book.find((book) => book[type] === value); // ищем книгу в массиве (book), критерии - если элемент массива идентичен искомому значению помещаем его в result
+		let result = this.books.find(book => book[type] === value); // ищем книгу в массиве (book), критерии - если элемент массива идентичен искомому значению помещаем его в result
 		if (result === undefined) { // если книга не найдена вернуть null
-        return null;
-      } else {
-        return result; // в случае успеха вернуть найденную книгу
-      }
+        	return null;
+      	} else {
+        	return result; // в случае успеха вернуть найденную книгу
+      	}
     }
 
-    giveBookByName(bookName) { // выдача книги по названию
-    	let bookSearch = this.book.find((book) => book.name === bookName); // ищем книгу в массиве (book), критерии - если элемент массива идентичен искомому значению помещаем его в giveBook
-    	if (bookSearch === undefined) { // если книга не найдена вернуть null
-        return null;
-      } else {
-      	delete this.bookName;
-      }
+    giveBookByName(bookName) { // выдача книги по названию в качестве аргумента принимает название книги
+    	let bookSearch = this.books.find(book => book.name === bookName); // ищем книгу в массиве (book), критерии - если элемент массива идентичен искомому значению помещаем его в giveBook
+    	if (typeof bookSearch === 'object') { // если в переменной находится найденная книга
+            this.books.splice(this.books.indexOf(bookSearch), 1); // удаляем её сравнивая с каждым элементом массива (книгами)
+        	return bookSearch; // возвращаем изменённый массив
+       }
+       else return null;
     }
 }
