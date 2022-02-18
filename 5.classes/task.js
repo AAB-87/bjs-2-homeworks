@@ -1,3 +1,5 @@
+// Задание 1
+
 class PrintEditionItem { // Создание печатного изжания
 	constructor(name, releaseDate, pagesCount) { // конструктор принимает параметры...)
 		this.name = name;
@@ -16,8 +18,9 @@ class PrintEditionItem { // Создание печатного изжания
 			this._state = 0;
 		} else if (newState > 100) {
 			this._state = 100;
+		} else {
+			this._state = newState;
 		}
-		this._state = newState;
 	}
 
 	get state() {
@@ -61,10 +64,35 @@ class DetectiveBook extends Book {
 	}
 }
 
+// Задание 2
 
+class Library { // Создание библиотеки
+	constructor(name) { // конструктор принимает параметры...)
+		this.name = name;
+		this.books = []; // пустой массив 
+	}
 
+	addBook(book) { // метод добавления книги в библиотеку который в качестве аргумента принимает объект (книгу)
+		if (book.state > 30) { // если состояние книги больше 30и
+			return this.books.push(book); // добавляем книгу в массив
+		}
+	}
 
+	findBookBy(type, value) { // метод поиска книги в библиотеке в качестве аргумента принимает ключ (type) с помощью которого будет производиться поиск и искомое значение (value)
+		let result = this.book.find((book) => book[type] === value); // ищем книгу в массиве (book), критерии - если элемент массива идентичен искомому значению помещаем его в result
+		if (result === undefined) { // если книга не найдена вернуть null
+        return null;
+      } else {
+        return result; // в случае успеха вернуть найденную книгу
+      }
+    }
 
-
-
-
+    giveBookByName(bookName) { // выдача книги по названию
+    	let bookSearch = this.book.find((book) => book.name === bookName); // ищем книгу в массиве (book), критерии - если элемент массива идентичен искомому значению помещаем его в giveBook
+    	if (bookSearch === undefined) { // если книга не найдена вернуть null
+        return null;
+      } else {
+      	delete this.bookName;
+      }
+    }
+}
