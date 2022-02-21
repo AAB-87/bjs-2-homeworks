@@ -3,9 +3,9 @@
 
 function parseCount(value) {
   let parsed = Number.parseInt(value);
-  if (Number.isNan(parsed)) {
-    throw new Error("невалидное значение"); // в случае ошибки выбрасывает исключение с ошибкой...
-  } else { // если ошибки нет, возвращает результат парсинга из функции
+  if (Number.isNan(parsed)) { // если значение не является числовым
+    throw new Error("невалидное значение"); // выбрасывает исключение с ошибкой...
+  } else { // если числовым, возвращает результат парсинга из функции
     return parsed;
   }
 }
@@ -21,40 +21,43 @@ function validateCount(value) {
 }
 
 // Задача 2
+// калькулятор треугольников, который сможет проверять существование треугольника, а так же считать площадь и периметр
 
 class Triangle {
   constructor(a, b, c) {
-    if ((a + b) < c || (a + c) < b || (b + c) < a) {
-      throw new Error("Треугольник с такими сторонами не существует")
-    }
+    if ((a + b) < c || (a + c) < b || (b + c) < a) { // если сумма двух сторон меньше третьей
+      throw new Error("Треугольник с такими сторонами не существует"); // выбрасываем исключение
+    } 
     this.a = a;
     this.b = b;
     this.c = c;
+    
   }
 
   getPerimeter() {
-    return this.a + this.b + this.c;
+    return this.a + this.b + this.c; // высчитываем периметр (сумма длинн всех сторон)
   }
 
-  getArea() {
+  getArea() { // высчитываем площадь с помошью формулы Герона
     let p = 0.5 * (this.a + this.b + this.c);
-    let area = Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c));
-    return area.toFixed(3);
+    let area = Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c)); // Math.sqrt возвращает квадратный корень из числа в скобках
+    return parseFloat(area.toFixed(3)); // в полученном результате оставляем 3 знака после запятой и преобразуем всё это в строку
   }
 }
 
 function getTriangle(a, b, c) {
   try {
-    return new Triangle(a, b, c);
+    return new Triangle(a, b, c); // Попытайтесь вернуть новый объект треугольника
   } catch (error) {
-    return Triangle = {
+    return Triangle = { // случае перехвата исключения возвращайте объект с двумя методами, которые возвращают строку
       getArea() {
-        return "Ошибка! Треугольник не существует"
-      }
+        let String = "Ошибка! Треугольник не существует"
+        return String
+      },
       getPerimeter() {
-        return "Ошибка! Треугольник не существует"
+        let String = "Ошибка! Треугольник не существует"
+        return String
       }
     }
   }
-
 }
